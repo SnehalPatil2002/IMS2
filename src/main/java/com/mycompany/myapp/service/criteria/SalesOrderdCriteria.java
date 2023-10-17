@@ -52,6 +52,8 @@ public class SalesOrderdCriteria implements Serializable, Criteria {
     private DoubleFilter totalRevenue;
 
     private DeliveryStatusFilter status;
+    
+    private LongFilter clientsId;
 
     private Boolean distinct;
 
@@ -65,6 +67,7 @@ public class SalesOrderdCriteria implements Serializable, Criteria {
         this.gstPercentage = other.gstPercentage == null ? null : other.gstPercentage.copy();
         this.totalRevenue = other.totalRevenue == null ? null : other.totalRevenue.copy();
         this.status = other.status == null ? null : other.status.copy();
+        this.clientsId = other.clientsId == null ? null : other.clientsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -185,6 +188,21 @@ public class SalesOrderdCriteria implements Serializable, Criteria {
     public void setDistinct(Boolean distinct) {
         this.distinct = distinct;
     }
+    
+    public LongFilter getClientsId() {
+        return clientsId;
+    }
+
+    public LongFilter clientsId() {
+        if (clientsId == null) {
+            clientsId = new LongFilter();
+        }
+        return clientsId;
+    }
+
+    public void setClientsId(LongFilter clientsId) {
+        this.clientsId = clientsId;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -203,13 +221,14 @@ public class SalesOrderdCriteria implements Serializable, Criteria {
             Objects.equals(gstPercentage, that.gstPercentage) &&
             Objects.equals(totalRevenue, that.totalRevenue) &&
             Objects.equals(status, that.status) &&
+            Objects.equals(clientsId, that.clientsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderDate, quantitySold, unitPrice, gstPercentage, totalRevenue, status, distinct);
+        return Objects.hash(id, orderDate, quantitySold, unitPrice, gstPercentage, totalRevenue,clientsId, status, distinct);
     }
 
     // prettier-ignore
@@ -223,6 +242,7 @@ public class SalesOrderdCriteria implements Serializable, Criteria {
             (gstPercentage != null ? "gstPercentage=" + gstPercentage + ", " : "") +
             (totalRevenue != null ? "totalRevenue=" + totalRevenue + ", " : "") +
             (status != null ? "status=" + status + ", " : "") +
+            (clientsId != null ? "clientsId=" + clientsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

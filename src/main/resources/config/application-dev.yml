@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/IMS?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/IMS2?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
-    password: root
+    password: Harshu@1903
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -58,7 +58,7 @@ spring:
     cache: false
 
 server:
-  port: 8081
+  port: 8083
 
 # ===================================================================
 # JHipster specific properties
@@ -74,7 +74,7 @@ jhipster:
   # CORS is only enabled by default with the "dev" profile
   cors:
     # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
-    allowed-origins: 'http://localhost:8081'
+    allowed-origins: 'http://localhost:8083'
     # Enable CORS when running in GitHub Codespaces
     allowed-origin-patterns: '*'
     allowed-methods: '*'

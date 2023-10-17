@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service.dto;
 
+import com.mycompany.myapp.domain.Clients;
 import com.mycompany.myapp.domain.enumeration.Status;
 import java.io.Serializable;
 import java.time.Instant;
@@ -24,8 +25,28 @@ public class PurchaseQuotationDTO implements Serializable {
     private Instant expectedDeliveryDate;
 
     private Status orderStatus;
+    
+    private ClientsDTO clients;
+    
+    private PurchaseQuotationDetailsDTO purchaseQuotationDetails;
 
-    public Long getId() {
+	public ClientsDTO getClients() {
+		return clients;
+	}
+
+	public void setClients(ClientsDTO clients) {
+		this.clients = clients;
+	}
+
+	public PurchaseQuotationDetailsDTO getPurchaseQuotationDetails() {
+		return purchaseQuotationDetails;
+	}
+
+	public void setPurchaseQuotationDetails(PurchaseQuotationDetailsDTO purchaseQuotationDetails) {
+		this.purchaseQuotationDetails = purchaseQuotationDetails;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -113,6 +134,10 @@ public class PurchaseQuotationDTO implements Serializable {
             ", poDate='" + getPoDate() + "'" +
             ", expectedDeliveryDate='" + getExpectedDeliveryDate() + "'" +
             ", orderStatus='" + getOrderStatus() + "'" +
+            ", clients=" + getClients() +
+            ", purchaseQuotationDetails="+getPurchaseQuotationDetails()+
             "}";
     }
+
+	
 }
