@@ -52,6 +52,10 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
     private InstantFilter expectedDeliveryDate;
 
     private StatusFilter orderStatus;
+    
+    private LongFilter clientsId;
+    
+  	private LongFilter purchaseQuotationDetailsId;
 
     private Boolean distinct;
 
@@ -65,6 +69,8 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
         this.poDate = other.poDate == null ? null : other.poDate.copy();
         this.expectedDeliveryDate = other.expectedDeliveryDate == null ? null : other.expectedDeliveryDate.copy();
         this.orderStatus = other.orderStatus == null ? null : other.orderStatus.copy();
+        this.clientsId = other.clientsId == null ? null : other.clientsId.copy();
+        this.purchaseQuotationDetailsId = other.purchaseQuotationDetailsId == null ? null : other.purchaseQuotationDetailsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -177,6 +183,31 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
     public void setOrderStatus(StatusFilter orderStatus) {
         this.orderStatus = orderStatus;
     }
+    
+    //added new fields
+    
+    public LongFilter getClientsId() {
+        return clientsId;
+    }
+
+    public LongFilter clientsId() {
+        if (clientsId == null) {
+            clientsId = new LongFilter();
+        }
+        return clientsId;
+    }
+
+    public void setClientsId(LongFilter clientsId) {
+        this.clientsId = clientsId;
+    }
+    
+    public LongFilter getPurchaseQuotationDetailsId() {
+  		return purchaseQuotationDetailsId;
+  	}
+
+  	public void setPurchaseQuotationDetailsId(LongFilter purchaseQuotationDetailsId) {
+  		this.purchaseQuotationDetailsId = purchaseQuotationDetailsId;
+  	}
 
     public Boolean getDistinct() {
         return distinct;
@@ -203,13 +234,15 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
             Objects.equals(poDate, that.poDate) &&
             Objects.equals(expectedDeliveryDate, that.expectedDeliveryDate) &&
             Objects.equals(orderStatus, that.orderStatus) &&
+            Objects.equals(clientsId, that.clientsId) &&
+            Objects.equals(purchaseQuotationDetailsId, that.purchaseQuotationDetailsId) &&            
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, referenceNumber, totalPOAmount, totalGSTAmount, poDate, expectedDeliveryDate, orderStatus, distinct);
+        return Objects.hash(id, referenceNumber, totalPOAmount, totalGSTAmount, poDate, expectedDeliveryDate, orderStatus,clientsId,purchaseQuotationDetailsId, distinct);
     }
 
     // prettier-ignore
@@ -223,6 +256,8 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
             (poDate != null ? "poDate=" + poDate + ", " : "") +
             (expectedDeliveryDate != null ? "expectedDeliveryDate=" + expectedDeliveryDate + ", " : "") +
             (orderStatus != null ? "orderStatus=" + orderStatus + ", " : "") +
+            (clientsId != null ? "clientsId=" + clientsId + ", " : "") +
+            (purchaseQuotationDetailsId != null ? "purchaseQuotationDetailsId=" + purchaseQuotationDetailsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

@@ -24,6 +24,16 @@ public class SalesOrderdDTO implements Serializable {
     private Double totalRevenue;
 
     private DeliveryStatus status;
+    
+    private ClientsDTO clients;
+
+    public ClientsDTO getClients() {
+		return clients;
+	}
+
+	public void setClients(ClientsDTO clients) {
+		this.clients = clients;
+	}
 
     public Long getId() {
         return id;
@@ -113,6 +123,7 @@ public class SalesOrderdDTO implements Serializable {
             ", gstPercentage=" + getGstPercentage() +
             ", totalRevenue=" + getTotalRevenue() +
             ", status='" + getStatus() + "'" +
+            ", clients=" + getClients() +
             "}";
     }
 }

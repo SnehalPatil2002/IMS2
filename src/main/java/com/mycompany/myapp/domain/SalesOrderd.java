@@ -38,10 +38,26 @@ public class SalesOrderd implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private DeliveryStatus status;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Clients clients;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public Long getId() {
+    public Clients getClients() {
+		return clients;
+	}
+
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
+	
+	public SalesOrderd clients(Clients clients) {
+        this.setClients(clients);
+        return this;
+}
+
+	public Long getId() {
         return this.id;
     }
 

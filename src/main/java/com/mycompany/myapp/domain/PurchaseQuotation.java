@@ -39,9 +39,41 @@ public class PurchaseQuotation implements Serializable {
     @Column(name = "order_status")
     private Status orderStatus;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Clients clients;
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    private PurchaseQuotationDetails purchaseQuotationDetails;
 
-    public Long getId() {
+    
+	public Clients getClients() {
+		return clients;
+	}
+
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
+	
+	public PurchaseQuotation clients(Clients clients) {
+	        this.setClients(clients);
+	        return this;
+	}
+
+	public PurchaseQuotationDetails getPurchaseQuotationDetails() {
+		return purchaseQuotationDetails;
+	}
+
+	public void setPurchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
+		this.purchaseQuotationDetails = purchaseQuotationDetails;
+	}
+	
+	public PurchaseQuotation purchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
+        this.setPurchaseQuotationDetails(purchaseQuotationDetails);
+        return this;
+}
+
+
+	public Long getId() {
         return this.id;
     }
 

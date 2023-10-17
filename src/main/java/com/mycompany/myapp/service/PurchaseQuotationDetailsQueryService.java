@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.*; // for static metamodels
-import com.mycompany.myapp.domain.PurchaseQuotationDetails;
 import com.mycompany.myapp.repository.PurchaseQuotationDetailsRepository;
 import com.mycompany.myapp.service.criteria.PurchaseQuotationDetailsCriteria;
 import com.mycompany.myapp.service.dto.PurchaseQuotationDetailsDTO;
@@ -109,6 +108,13 @@ public class PurchaseQuotationDetailsQueryService extends QueryService<PurchaseQ
             }
             if (criteria.getDiscount() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDiscount(), PurchaseQuotationDetails_.discount));
+            }
+            
+            if (criteria.getRawMaterialId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getRawMaterialId(), root -> root.join(PurchaseQuotationDetails_.rawMaterial, JoinType.LEFT).get(RawMaterial_.id))
+                    );
             }
         }
         return specification;

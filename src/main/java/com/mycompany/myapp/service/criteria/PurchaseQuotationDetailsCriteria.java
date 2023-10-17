@@ -32,8 +32,10 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
     private DoubleFilter totalPrice;
 
     private DoubleFilter discount;
+    
+    private LongFilter rawMaterialId;
 
-    private Boolean distinct;
+	private Boolean distinct;
 
     public PurchaseQuotationDetailsCriteria() {}
 
@@ -150,6 +152,21 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
         this.distinct = distinct;
     }
 
+    public LongFilter getRawMaterialId() {
+		return rawMaterialId;
+	}
+
+	public void setRawMaterialId(LongFilter rawMaterialId) {
+		this.rawMaterialId = rawMaterialId;
+	}
+
+	 public LongFilter rawMaterialId() {
+	        if (rawMaterialId == null) {
+	        	rawMaterialId = new LongFilter();
+	        }
+	        return rawMaterialId;
+	   }	
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,13 +183,14 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
             Objects.equals(pricePerUnit, that.pricePerUnit) &&
             Objects.equals(totalPrice, that.totalPrice) &&
             Objects.equals(discount, that.discount) &&
+            Objects.equals(rawMaterialId, that.rawMaterialId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtyOrdered, gstTaxPercentage, pricePerUnit, totalPrice, discount, distinct);
+        return Objects.hash(id, qtyOrdered, gstTaxPercentage, pricePerUnit, totalPrice, discount,rawMaterialId, distinct);
     }
 
     // prettier-ignore
@@ -185,6 +203,7 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
             (pricePerUnit != null ? "pricePerUnit=" + pricePerUnit + ", " : "") +
             (totalPrice != null ? "totalPrice=" + totalPrice + ", " : "") +
             (discount != null ? "discount=" + discount + ", " : "") +
+            (rawMaterialId != null ? "rawMaterialId" + rawMaterialId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

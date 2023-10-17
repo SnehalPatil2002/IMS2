@@ -113,7 +113,22 @@ public class PurchaseQuotationQueryService extends QueryService<PurchaseQuotatio
             if (criteria.getOrderStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getOrderStatus(), PurchaseQuotation_.orderStatus));
             }
+            
+            if (criteria.getClientsId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getClientsId(), root -> root.join(PurchaseQuotation_.clients, JoinType.LEFT).get(Clients_.id))
+                    );
+            }
+            if (criteria.getPurchaseQuotationDetailsId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getPurchaseQuotationDetailsId(), root -> root.join(PurchaseQuotation_.purchaseQuotationDetails, JoinType.LEFT).get(PurchaseQuotationDetails_.id))
+                    );
+            }
+           
         }
+        
         return specification;
     }
 }

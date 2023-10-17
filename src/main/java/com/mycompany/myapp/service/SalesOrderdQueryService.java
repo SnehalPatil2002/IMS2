@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.*; // for static metamodels
-import com.mycompany.myapp.domain.SalesOrderd;
 import com.mycompany.myapp.repository.SalesOrderdRepository;
 import com.mycompany.myapp.service.criteria.SalesOrderdCriteria;
 import com.mycompany.myapp.service.dto.SalesOrderdDTO;
@@ -108,6 +107,14 @@ public class SalesOrderdQueryService extends QueryService<SalesOrderd> {
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), SalesOrderd_.status));
             }
+            
+            if (criteria.getClientsId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getClientsId(), root -> root.join(SalesOrderd_.clients, JoinType.LEFT).get(Clients_.id))
+                    );
+            }
+           
         }
         return specification;
     }
